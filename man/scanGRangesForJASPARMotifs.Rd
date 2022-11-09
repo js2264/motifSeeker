@@ -12,17 +12,6 @@ scanGRangesForJASPARMotifs(
   ncores = 1
 )
 }
-\arguments{
-\item{granges}{GRanges object}
-
-\item{seqs}{DNAStringSet objec}
-
-\item{taxon}{String}
-
-\item{db}{JASPAR object}
-
-\item{ncores}{numeric}
-}
 \value{
 GRanges input with extra columns. Each column indicates whether a TF
 binding site is found in the GRanges object
@@ -31,9 +20,9 @@ binding site is found in the GRanges object
 Scan a set of GRanges for JASPAR motifs
 }
 \examples{
-ATAC_peaks <- readRDS(here::here('Share/Day1/ATAC_peaks.rds'))
+ATAC_peaks <- readRDS(here::here('../../../Share/Day1/ATAC_peaks.rds'))
 granges <- ATAC_peaks[ATAC_peaks$annot != "non-DA"]
 seqlevelsStyle(granges) <- "UCSC"
-seqs <- Biostrings::getSeq(BSgenome.Scerevisiae.UCSC.sacCer3::BSgenome.Scerevisiae.UCSC.sacCer3)
+seqs <- getSeq(BSgenome.Scerevisiae.UCSC.sacCer3::BSgenome.Scerevisiae.UCSC.sacCer3)
 x <- scanGRangesForJASPARMotifs(granges, seqs)
 }

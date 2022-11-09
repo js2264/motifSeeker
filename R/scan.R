@@ -2,23 +2,25 @@
 #'
 #' Scan a set of GRanges for JASPAR motifs
 #'
-#' @param granges GRanges object
-#' @param seqs DNAStringSet objec
-#' @param taxon String
-#' @param db JASPAR object
-#' @param ncores numeric
+#' @param granges
+#' @param seqs
+#' @param taxon
+#' @param db
+#' @param ncores
 #' @return GRanges input with extra columns. Each column indicates whether a TF
 #' binding site is found in the GRanges object
 #'
-#' @importFrom GenomicRanges GRanges
 #' @importFrom JASPAR2020 JASPAR2020
+#' @import GenomicRanges
+#' @import TFBSTools
+#' @import BiocParallel
 #' @export
 #'
 #' @examples
-#' ATAC_peaks <- readRDS(here::here('Share/Day1/ATAC_peaks.rds'))
+#' ATAC_peaks <- readRDS(here::here('../../../Share/Day1/ATAC_peaks.rds'))
 #' granges <- ATAC_peaks[ATAC_peaks$annot != "non-DA"]
 #' seqlevelsStyle(granges) <- "UCSC"
-#' seqs <- Biostrings::getSeq(BSgenome.Scerevisiae.UCSC.sacCer3::BSgenome.Scerevisiae.UCSC.sacCer3)
+#' seqs <- getSeq(BSgenome.Scerevisiae.UCSC.sacCer3::BSgenome.Scerevisiae.UCSC.sacCer3)
 #' x <- scanGRangesForJASPARMotifs(granges, seqs)
 
 scanGRangesForJASPARMotifs <- function(
